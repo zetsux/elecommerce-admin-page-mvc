@@ -1,0 +1,12 @@
+file '.htaccess' = Used to modify the configuration of directory in the apache server
+
+'Options -Indexes'
+As long as the directory doesn't contain any index named files, access to the directory will be blocked.
+
+'Options -Multiviews
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [L]'
+Rewrite URL
