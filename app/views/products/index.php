@@ -9,7 +9,7 @@
                     <li>Brand : <?= $prod["brand"] ?></li>
                     <li>Category : <?= $prod["category"] ?></li>
                     <li>Seller : <?= $prod["seller"] ?></li>
-                    <li>Price : <?= $prod["price"] ?></li>
+                    <li>Price : Rp <?= $prod["price"] ?></li>
                 </ul>
             <?php endforeach; ?>
         </div>
