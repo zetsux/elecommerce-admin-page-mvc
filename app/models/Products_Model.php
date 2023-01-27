@@ -71,5 +71,35 @@
             $this->db->executeStatement();
             return $this->db->rowDiffCount();
         }
+
+        public function editProduct($editedProduct, $editedFile) {
+            if ($editedFile['aimage']['error'] === 4) {
+                $eimage = [1, $editedProduct["aoldimg"]];
+            } else {
+                $eimage = $this->uploadFile($editedFile['aimage'], ['jpg', 'png', 'jpeg'], 2000000);
+                if ($eimage[0] < 0) return $eimage;
+            }
+
+            $query = "UPDATE $this->tableName SET
+                        name=:name, 
+                        brand=:brand, 
+                        category=:category, 
+                        seller=:seller, 
+                        price=:price, 
+                        image=:image 
+                    WHERE id=:id";
+
+            $this->db->doQuery($query);
+            $this->db->bindVal('name', $editedProduct["aname"]);
+            $this->db->bindVal('brand', $editedProduct["abrand"]);
+            $this->db->bindVal('category', $editedProduct["acategory"]);
+            $this->db->bindVal('seller', $editedProduct["aseller"]);
+            $this->db->bindVal('price', $editedProduct["aprice"]);
+            $this->db->bindVal('image', $eimage[1]);
+            $this->db->bindVal('id', $editedProduct["aid"]);
+
+            $this->db->executeStatement();
+            return [$this->db->rowDiffCount(), 'success'];
+        }
     }
 ?>

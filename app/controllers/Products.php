@@ -47,5 +47,27 @@
                 exit;
             }
         }
+
+        public function getedit() {
+            echo json_encode($this->model('Products_Model')->getProductById($_POST["id"]));
+        }
+
+        public function edit() {
+            $check = $this->model('Products_Model')->editProduct($_POST, $_FILES);
+
+            if ($check[0] > 0) {
+                FlashMsg::setFlash('has successfully', 'been edited', 'success');
+                header('Location: ' . BASE_URL . 'products');
+                exit;
+            } else if ($check[0] >= -2) {
+                FlashMsg::setFlash('is unsucessfully', 'edited', 'danger', $check[1]);
+                header('Location: ' . BASE_URL . 'products');
+                exit;
+            } else {
+                FlashMsg::setFlash('is unsucessfully', 'edited', 'danger');
+                header('Location: ' . BASE_URL . 'products');
+                exit;
+            }
+        }
     }
 ?>
