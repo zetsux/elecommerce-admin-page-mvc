@@ -101,5 +101,21 @@
             $this->db->executeStatement();
             return [$this->db->rowDiffCount(), 'success'];
         }
+
+        public function searchProducts() {
+            $keyword = $_POST['skeyword'];
+            $query = "SELECT * FROM products WHERE
+                    name LIKE :keyword OR
+                    brand LIKE :keyword OR
+                    category LIKE :keyword OR
+                    seller LIKE :keyword OR
+                    price LIKE :keyword
+                    ";
+
+            $this->db->doQuery($query);
+            $this->db->bindVal('keyword', "%$keyword%");
+
+            return $this->db->fetchResults();
+        }
     }
 ?>

@@ -8,12 +8,18 @@
 
     <div class="row">
         <div class="col-lg-6">
-
-            <div class="d-flex justify-content-between px-1">
-                <h3 class="m-2">Products List</h3>
+            <h3 class="mt-2 mb-2 ms-1 d-block">Products List</h3>
+            <div class="d-flex justify-content-between px-2">
                 <button type="button" class="btn btn-warning mt-2 mb-3 addProductButton" data-bs-toggle="modal" data-bs-target="#addModal">
                     Add New Product
                 </button>
+
+                <form action="<?= BASE_URL ?>products/search" method="post">
+                    <div class="input-group mt-2">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="Search for products.." aria-describedby="button-addon2" name="skeyword" id="skeyword">
+                        <button class="btn btn-outline-success" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </form>
             </div>
             
 
@@ -22,7 +28,7 @@
                     <a href="<?= BASE_URL ?>products/detail/<?= $prod["id"]?>" class="list-group-item list-group-item-action list-group-item-light 
                         d-flex justify-content-between align-items-center">
                         <?= $prod["name"] ?>
-                        <img src='../public/img/<?= $prod["image"]?>' style='width: 60px; height: 60px;' class='img-thumbnail shadow'>
+                        <img src="<?= BASE_URL ?>img/<?= $prod["image"]?>" style='width: 60px; height: 60px;' class='img-thumbnail shadow'>
                     </a>
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -55,7 +61,7 @@
                     
                 <div class="mb-3">
                     <label for="aname" class="form-label">Product Name</label>
-                    <input type="text" class="form-control" name="aname" id="aname" required>
+                    <input type="text" class="form-control" name="aname" id="aname" autocomplete="off" required>
                 </div>
 
                 <label for="abrand" class="form-label">Product Brand</label>
@@ -85,12 +91,12 @@
 
                 <div class="mb-3">
                     <label for="aprice" class="form-label">Product Price</label>
-                    <input type="number" class="form-control" name="aprice" id="aprice" required>
+                    <input type="number" class="form-control" name="aprice" id="aprice" autocomplete="off" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="aseller" class="form-label">Seller Name</label>
-                    <input type="text" class="form-control" name="aseller" id="aseller" required>
+                    <input type="text" class="form-control" name="aseller" id="aseller" autocomplete="off" required>
                 </div>
 
                 <div class="mb-3">

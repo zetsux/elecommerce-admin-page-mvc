@@ -69,5 +69,14 @@
                 exit;
             }
         }
+
+        public function search() {
+            $data["title"] = 'Products List';
+            $data["prods"] = $this->model('Products_Model')->searchProducts();
+
+            $this->view('templates/header', $data);
+            $this->view('products/index', $data);
+            $this->view('templates/footer');
+        }
     }
 ?>
