@@ -17,5 +17,20 @@
             $this->db->bindVal('id', $id);
             return $this->db->fetchResult();
         }
+
+        public function addNewProduct($newProduct) {
+            $query = "INSERT INTO $this->tableName VALUES (
+                        '', :name, :brand, :category, :price, :seller, '')";
+
+            $this->db->doQuery($query);
+            $this->db->bindVal('name', $newProduct["aname"]);
+            $this->db->bindVal('brand', $newProduct["abrand"]);
+            $this->db->bindVal('category', $newProduct["acategory"]);
+            $this->db->bindVal('price', $newProduct["aprice"]);
+            $this->db->bindVal('seller', $newProduct["aseller"]);
+
+            $this->db->executeStatement();
+            return $this->db->rowDiffCount();
+        }
     }
 ?>

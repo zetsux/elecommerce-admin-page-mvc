@@ -17,5 +17,12 @@
             $this->view('products/detail', $data);
             $this->view('templates/footer');
         }
+
+        public function new() {
+            if ($this->model('Products_Model')->addNewProduct($_POST) > 0) {
+                header('Location: ' . BASE_URL . 'products');
+                exit;
+            }
+        }
     }
 ?>

@@ -67,5 +67,9 @@
         public function executeStatement() {
             $this->statement->execute();
         }
+
+        public function rowDiffCount() {
+            return $this->statement->rowCount();
+        }
     }
 ?>
