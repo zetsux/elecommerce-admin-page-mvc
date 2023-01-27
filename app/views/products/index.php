@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-6">
 
-            <div style="display: flex; justify-content: space-between; padding-right:10px">
+            <div class="d-flex justify-content-between px-1">
                 <h3 class="m-2">Products List</h3>
                 <button type="button" class="btn btn-warning mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#addModal">
                     Add New Product
@@ -19,11 +19,19 @@
 
             <div class="list-group mt-2">
                 <?php foreach ($data["prods"] as $prod) : ?>
-                    <a href="<?= BASE_URL ?>products/detail/<?= $prod["id"]?>" class="list-group-item list-group-item-action list-group-item-primary 
+                    <a href="<?= BASE_URL ?>products/detail/<?= $prod["id"]?>" class="list-group-item list-group-item-action list-group-item-light 
                         d-flex justify-content-between align-items-center">
                         <?= $prod["name"] ?>
                         <img src='../public/img/<?= $prod["image"]?>' style='width: 60px; height: 60px;' class='img-thumbnail shadow'>
                     </a>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <a href="<?= BASE_URL ?>products" class="btn btn-primary align-items-center w-50">Edit</a>
+                        <a href="<?= BASE_URL ?>products/delete/<?= $prod["id"]?>" class="btn btn-danger align-items-center w-50" 
+                            onclick="return confirm('Are you sure that you want to delete this product?')">
+                            Delete
+                        </a>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>

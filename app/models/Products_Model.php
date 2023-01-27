@@ -20,7 +20,7 @@
 
         public function addNewProduct($newProduct, $newFile) {
             $aimage = $this->uploadFile($newFile["aimage"], ['jpg', 'png', 'jpeg'], 2000000);
-            if ($aimage[0] < 0) return $aimage[0];
+            if ($aimage[0] < 0) return $aimage;
 
             $query = "INSERT INTO $this->tableName VALUES (
                         '', :name, :brand, :category, :price, :seller, :image)";
@@ -51,7 +51,8 @@
             }
     
             if ( $fileSize > $maxSize ) {
-                return [-2, "File Size is too large (maximum allowed size is $maxSize)"];
+                $maxSize /= 1000000;
+                return [-2, "File size is too large (maximum allowed size is $maxSize MB)"];
             }
     
             $fileName = str_replace("." . $fileExtension, "", $fileName);
@@ -59,6 +60,16 @@
     
             move_uploaded_file($fileTmp, '../public/img/' . $fileName);
             return [1, $fileName];
+        }
+
+        public function deleteProductById($id) {
+            $query = "DELETE FROM $this->tableName WHERE id=:id";
+            $this->db->doQuery($query);
+
+            $this->db->bindVal('id', $id);
+
+            $this->db->executeStatement();
+            return $this->db->rowDiffCount();
         }
     }
 ?>

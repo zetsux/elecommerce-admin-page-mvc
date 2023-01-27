@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title><?= $data["title"] ?></title>
     <link href="<?= BASE_URL; ?>css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css">
 </head>
-<body>
+<body style="background-color: #A7C7E7">
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<?= BASE_URL; ?>">MVC in PHP</a>
+    <a class="navbar-brand px-2" href="<?= BASE_URL; ?>">Elecommerce</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

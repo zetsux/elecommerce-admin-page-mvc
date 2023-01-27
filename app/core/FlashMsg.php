@@ -11,7 +11,7 @@
 
         public static function flashMessage() {
             if (isset($_SESSION["flash"])) {
-                if ($_SESSION["flash"]["type"] === 'success') {
+                if ($_SESSION["flash"]["cause"] === '') {
                     echo '<div class="alert alert-' . $_SESSION["flash"]["type"] . ' alert-dismissible fade show" role="alert">
                             Product <strong>' . $_SESSION["flash"]["msg"] . '</strong> ' . $_SESSION["flash"]["action"] . '
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -20,7 +20,7 @@
                     echo '<div class="alert alert-' . $_SESSION["flash"]["type"] . ' alert-dismissible fade show" role="alert">
                             Product <strong>' . $_SESSION["flash"]["msg"] . '</strong> ' . $_SESSION["flash"]["action"] . 
                             '<br>Cause : ' . $_SESSION["flash"]["cause"] . 
-                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            ' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                 }
 
