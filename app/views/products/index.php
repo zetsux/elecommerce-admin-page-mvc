@@ -1,13 +1,23 @@
 <div class="container-fluid m-2">
     <div class="row">
-        <div class="col-6">
-        <button type="button" class="btn btn-warning mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addModal">
-            Add New Product
-        </button>
+        <div class="col-lg-6 mt-2">
+            <?php FlashMsg::flashMessage() ?>
+        </div>
+    </div>
 
-            <h3 class="m-1">Products List</h3>
 
-            <div class="list-group mt-4">
+    <div class="row">
+        <div class="col-lg-6">
+
+            <div style="display: flex; justify-content: space-between; padding-right:10px">
+                <h3 class="m-2">Products List</h3>
+                <button type="button" class="btn btn-warning mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#addModal">
+                    Add New Product
+                </button>
+            </div>
+            
+
+            <div class="list-group mt-2">
                 <?php foreach ($data["prods"] as $prod) : ?>
                     <a href="<?= BASE_URL ?>products/detail/<?= $prod["id"]?>" class="list-group-item list-group-item-action list-group-item-primary 
                         d-flex justify-content-between align-items-center">
@@ -28,7 +38,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form method="post" action="<?= BASE_URL ?>products/new">
+            <form method="post" action="<?= BASE_URL ?>products/new" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="aname" class="form-label">Product Name</label>
                     <input type="text" class="form-control" name="aname" id="aname" placeholder="ex : iPhone 14 Pro Max 128 GB" required>
@@ -41,7 +51,6 @@
 
                 <label for="abrand" class="form-label">Product Brand</label>
                 <select class="form-select mb-3" aria-label="Product Brand" id="abrand" name="abrand" required>
-                    <option selected>Select the product brand</option>
                     <option value="Samsung">Samsung</option>
                     <option value="Apple">Apple</option>
                     <option value="Asus">Asus</option>
@@ -58,7 +67,6 @@
 
                 <label for="acategory" class="form-label">Product Category</label>
                 <select class="form-select mb-3" aria-label="Product Category" id="acategory" name="acategory" required>
-                    <option selected>Select the product category</option>
                     <option value="Smartphone">Smartphone</option>
                     <option value="Laptop">Laptop</option>
                     <option value="Electric Fan">Electric Fan</option>
@@ -77,6 +85,11 @@
                 <div class="mb-3">
                     <label for="aseller" class="form-label">Seller Name</label>
                     <input type="text" class="form-control" name="aseller" id="aseller" placeholder="ex : Johnny Grey" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="aimage" class="form-label">Product Image</label>
+                    <input class="form-control" type="file" id="aimage" name="aimage">
                 </div>
         </div>
         <div class="modal-footer">

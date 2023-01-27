@@ -19,7 +19,18 @@
         }
 
         public function new() {
-            if ($this->model('Products_Model')->addNewProduct($_POST) > 0) {
+            $check = $this->model('Products_Model')->addNewProduct($_POST, $_FILES);
+
+            if ($check[0] > 0) {
+                FlashMsg::setFlash('has successfully', 'been added to the products list', 'success');
+                header('Location: ' . BASE_URL . 'products');
+                exit;
+            } else if ($check[0] > -3) {
+                FlashMsg::setFlash('is unsucessfully', 'added to the products list', 'danger', $check[1]);
+                header('Location: ' . BASE_URL . 'products');
+                exit;
+            } else {
+                FlashMsg::setFlash('is unsucessfully', 'added to the products list', 'danger', 'Unknown Cause');
                 header('Location: ' . BASE_URL . 'products');
                 exit;
             }
